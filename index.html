@@ -1425,6 +1425,13 @@
            UTILITAIRES
            ========================================================= */
         const norm = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        function slug(str){
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')   // é→e, è→e, ç→c, etc.
+    .replace(/[^a-zA-Z0-9]+/g, '-')    // spaces & symbols → dash
+    .replace(/^-+|-+$/g, '');          // trim leading/trailing dashes
+}
 
         function subjectList() {
             return [{ id: 'all', name: 'Tous les documents', icon: 'layers', color: '#8b8378', count: DOCS.length }]
@@ -1541,14 +1548,23 @@
            ACTIONS
            ========================================================= */
         function downloadDoc(doc) {
-            const a = document.createElement('a');
-            a.href = doc.path;
-            a.download = doc.file;
-            a.rel = 'noopener';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-        }
+    const s = SUBJECTS[doc.subject];
+    const kindPart = doc.kind === 'cours'
+        ? 'Cours' + doc.td
+        : doc.kind === 'correction'
+            ? 'TD' + doc.td + '-Correction'
+            : 'TD' + doc.td + '-Enonce';
+
+    const filename = 'YODRIVE_' + slug(s.name) + '_' + kindPart + '.pdf';
+
+    const a = document.createElement('a');
+    a.href = doc.path;
+    a.download = filename;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
 
         const modal = $('#modal');
         const pdfFrame = $('#pdfFrame');
