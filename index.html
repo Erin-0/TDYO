@@ -96,7 +96,7 @@
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: 266px minmax(0, 1fr);
+            grid-template-columns: 276px minmax(0, 1fr);
             min-height: 100vh
         }
 
@@ -165,7 +165,7 @@
         .nav {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 3px;
             overflow-y: auto;
             flex: 1;
             padding-bottom: 8px;
@@ -186,9 +186,9 @@
             align-items: center;
             gap: 10px;
             width: 100%;
-            padding: 8px 10px;
+            padding: 9px 11px;
             border: 1px solid transparent;
-            border-radius: 11px;
+            border-radius: 12px;
             background: none;
             cursor: pointer;
             text-align: left;
@@ -377,79 +377,100 @@
             line-height: 1;
         }
 
-        .segmented {
+        /* NIVEAU 2 : FILTRE TYPE HORIZONTAL */
+        .type-bar {
             display: flex;
-            gap: 2px;
-            padding: 3px;
-            flex: 0 0 auto;
-            background: var(--surface-2);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-        }
-
-        .segmented button {
-            border: 0;
-            background: none;
-            cursor: pointer;
-            font-size: .78rem;
-            font-weight: 600;
-            color: var(--muted);
-            padding: 6px 12px;
-            border-radius: 9px;
-            white-space: nowrap;
-            transition: background .16s, color .16s, box-shadow .16s;
-        }
-
-        .segmented button:hover {
-            color: var(--ink-2)
-        }
-
-        .segmented button.active {
-            background: var(--surface);
-            color: var(--ink);
-            box-shadow: var(--shadow-sm)
-        }
-
-        .viewtoggle {
-            display: flex;
-            gap: 2px;
-            padding: 3px;
-            flex: 0 0 auto;
-            background: var(--surface-2);
-            border: 1px solid var(--line);
-            border-radius: 12px
-        }
-
-        .viewtoggle button {
-            display: grid;
-            place-items: center;
-            width: 32px;
-            height: 28px;
-            border: 0;
-            background: none;
-            border-radius: 9px;
-            cursor: pointer;
-            color: var(--muted);
-            transition: background .16s, color .16s, box-shadow .16s;
-        }
-
-        .viewtoggle button:hover {
-            color: var(--ink-2)
-        }
-
-        .viewtoggle button.active {
-            background: var(--surface);
-            color: var(--ink);
-            box-shadow: var(--shadow-sm)
-        }
-
-        .chips {
-            display: none;
-            gap: 7px;
+            gap: 4px;
+            padding: 10px 0 2px;
             overflow-x: auto;
-            padding: 11px 0 2px;
             scrollbar-width: none;
-            -ms-overflow-style: none
+        }
+
+        .type-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .type-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 13px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--ink-2);
+            font-size: .79rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all .16s ease;
+        }
+
+        .type-pill:hover {
+            border-color: var(--ink-2);
+            color: var(--ink);
+        }
+
+        .type-pill.active {
+            background: var(--ink);
+            color: #f7f2e6;
+            border-color: var(--ink);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .type-pill .pill-badge {
+            font-size: .65rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 99px;
+            background: rgba(25, 23, 19, .06);
+            color: var(--muted);
+        }
+
+        .type-pill.active .pill-badge {
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        /* NIVEAU 3 : FILTRE DYNAMIQUE TD (TD1, TD2...) */
+        .sub-filter-bar {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 0 2px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .sub-filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sub-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--line-2);
+            background: var(--surface-2);
+            color: var(--ink-2);
+            font-size: .74rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all .14s ease;
+        }
+
+        .sub-pill:hover {
+            background: var(--surface);
+            color: var(--ink);
+        }
+
+        .sub-pill.active {
+            background: var(--ink-2);
+            color: #fff;
+            border-color: var(--ink-2);
         }
 
         .chips::-webkit-scrollbar {
@@ -531,7 +552,7 @@
             border-radius: var(--radius);
             overflow: hidden;
             cursor: pointer;
-            animation: rise .5s cubic-bezier(.2, .8, .3, 1) backwards;
+            animation: rise .45s cubic-bezier(.2, .8, .3, 1) backwards;
             transition: transform .26s cubic-bezier(.2, .8, .3, 1), box-shadow .26s, border-color .26s;
         }
 
@@ -546,9 +567,10 @@
             outline-offset: 3px
         }
 
+        /* Visual pur et propre sans textes mamelouks */
         .card-visual {
             position: relative;
-            height: 134px;
+            height: 130px;
             flex: 0 0 auto;
             display: grid;
             place-items: center;
@@ -585,47 +607,6 @@
             filter: drop-shadow(0 5px 14px rgba(0, 0, 0, .30))
         }
 
-        .badge {
-            position: absolute;
-            top: 11px;
-            right: 11px;
-            z-index: 3;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: .63rem;
-            font-weight: 700;
-            letter-spacing: .09em;
-            text-transform: uppercase;
-            padding: 4px 9px;
-            border-radius: 99px;
-            line-height: 1.4;
-            background: rgba(255, 255, 255, .94);
-            color: #1a1814;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .14);
-        }
-
-        .badge.correction {
-            background: rgba(18, 16, 13, .72);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, .30);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-        }
-
-        .td-tag {
-            position: absolute;
-            bottom: 10px;
-            left: 13px;
-            z-index: 3;
-            font-family: var(--font-display);
-            font-size: .82rem;
-            font-weight: 600;
-            letter-spacing: .06em;
-            color: rgba(255, 255, 255, .92);
-            text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
-        }
-
         .card-body {
             padding: 13px 14px 14px;
             display: flex;
@@ -641,7 +622,7 @@
 
         .card-title {
             font-family: var(--font-display);
-            font-size: 1.03rem;
+            font-size: 1.02rem;
             font-weight: 600;
             letter-spacing: -.008em;
             line-height: 1.25;
@@ -658,6 +639,21 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+
+        .card-warning {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .68rem;
+            font-weight: 600;
+            color: #b45309;
+            background: rgba(245, 158, 11, .12);
+            border: 1px solid rgba(245, 158, 11, .28);
+            border-radius: 6px;
+            padding: 3px 7px;
+            margin-top: 5px;
+            line-height: 1.25;
         }
 
         .card-actions {
@@ -709,57 +705,6 @@
             flex: 0 0 auto;
             width: 34px;
             padding: 8px 0
-        }
-
-        /* ---- LIST VIEW ---- */
-        .grid.list {
-            grid-template-columns: 1fr;
-            gap: 9px
-        }
-
-        .grid.list .card {
-            flex-direction: row;
-            align-items: stretch;
-            border-radius: 14px
-        }
-
-        .grid.list .card-visual {
-            width: 110px;
-            height: auto;
-            flex: 0 0 110px
-        }
-
-        .grid.list .card-visual .glyph {
-            width: 34px;
-            height: 34px
-        }
-
-        .grid.list .card-body {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 11px 16px
-        }
-
-        .grid.list .card-title {
-            font-size: .96rem
-        }
-
-        .grid.list .card-actions {
-            margin: 0;
-            flex: 0 0 auto
-        }
-
-        .grid.list .badge {
-            top: 7px;
-            right: 7px;
-            font-size: .56rem;
-            padding: 3px 7px
-        }
-
-        .grid.list .td-tag {
-            display: none
         }
 
         /* ---- EMPTY ---- */
@@ -1001,6 +946,43 @@
             }
         }
 
+        
+        /* ============ MOBILE MENU & DRAWER ============ */
+        .mobile-bar {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            border-radius: 11px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--ink);
+            font-size: .81rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .16s ease;
+        }
+
+        .mobile-menu-btn:active {
+            transform: scale(.96);
+        }
+
+        .mobile-menu-btn svg {
+            color: var(--ink-2);
+        }
+
+        .sidebar-close-btn {
+            display: none;
+        }
+
+        .sidebar-backdrop {
+            display: none;
+        }
+
         /* ============ RESPONSIVE ============ */
         @media (max-width:1080px) {
             .grid {
@@ -1014,15 +996,74 @@
             }
 
             .sidebar {
-                display: none
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: min(310px, 86vw);
+                height: 100dvh;
+                z-index: 150;
+                transform: translateX(-100%);
+                transition: transform .28s cubic-bezier(.2, .8, .3, 1), box-shadow .28s ease;
+                box-shadow: none;
+                border-right: 1px solid var(--line);
+                background: linear-gradient(180deg, #f9f6ef 0%, #f2eee4 100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+                box-shadow: 0 0 50px rgba(0, 0, 0, .45);
+            }
+
+            .sidebar-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(20, 18, 14, .60);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                z-index: 140;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .25s ease;
+            }
+
+            .sidebar-backdrop.open {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .sidebar-close-btn {
+                display: grid;
+                place-items: center;
+                width: 32px;
+                height: 32px;
+                margin-left: auto;
+                border-radius: 9px;
+                border: 1px solid var(--line);
+                background: var(--surface);
+                color: var(--ink-2);
+                cursor: pointer;
+                transition: background .16s, color .16s;
+            }
+
+            .sidebar-close-btn:hover {
+                background: #fff;
+                color: var(--ink);
+            }
+
+            .mobile-bar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin-bottom: 12px;
             }
 
             .mobile-brand {
-                display: flex
-            }
-
-            .chips {
-                display: flex
+                display: flex;
+                margin-bottom: 0;
             }
 
             .topbar {
@@ -1040,16 +1081,6 @@
 
             .topbar-inner {
                 gap: 8px
-            }
-
-            .segmented {
-                flex: 1 1 auto;
-                justify-content: space-between
-            }
-
-            .segmented button {
-                flex: 1;
-                padding: 6px 8px
             }
 
             .modal-panel {
@@ -1092,19 +1123,6 @@
                 font-size: .69rem
             }
 
-            .td-tag {
-                font-size: .72rem;
-                bottom: 8px;
-                left: 10px
-            }
-
-            .badge {
-                font-size: .56rem;
-                padding: 3px 7px;
-                top: 8px;
-                right: 8px
-            }
-
             .btn {
                 padding: 8px 0;
                 font-size: .72rem
@@ -1130,35 +1148,6 @@
             .search kbd {
                 display: none
             }
-
-            .grid.list .card-visual {
-                width: 82px;
-                flex: 0 0 82px
-            }
-
-            .grid.list .card-visual .glyph {
-                width: 26px;
-                height: 26px
-            }
-
-            .grid.list .card-body {
-                padding: 10px 12px;
-                gap: 10px
-            }
-
-            .grid.list .card-title {
-                font-size: .86rem
-            }
-
-            .grid.list .card-actions .btn {
-                flex: 0 0 auto;
-                width: 32px;
-                padding: 7px 0
-            }
-
-            .grid.list .card-actions .btn-primary {
-                flex: 0 0 auto
-            }
         }
 
         @media (max-width:380px) {
@@ -1178,7 +1167,7 @@
 
     <div class="app">
         <!-- ============ SIDEBAR ============ -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="brand">
                 <div class="brand-mark">
                     <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -1192,31 +1181,50 @@
                     <span class="brand-name">YODRIVE</span>
                     <span class="brand-sub">Bibliothèque d'étude</span>
                 </div>
+                <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Fermer le menu">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
             </div>
 
+            <!-- NIVEAU 1 : MATIERES (TABS PRINCIPAUX) -->
             <div class="nav-label">Matières</div>
             <nav class="nav" id="nav"></nav>
 
             <div class="sidebar-foot">
-                <div><strong id="statDocs">11</strong><span>documents</span></div>
+                <div><strong id="statDocs">26</strong><span>documents</span></div>
                 <div><strong id="statSubj">6</strong><span>matières</span></div>
             </div>
         </aside>
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
         <!-- ============ MAIN ============ -->
         <main class="main">
             <header class="topbar">
-                <div class="mobile-brand">
-                    <div class="brand-mark">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M12 6.6C10.6 5.1 8.6 4.4 6 4.4H4v13h2c2.6 0 4.6.7 6 2.2 1.4-1.5 3.4-2.2 6-2.2h2v-13h-2c-2.6 0-4.6.7-6 2.2z" />
-                            <path d="M12 6.6v13" />
+                <div class="mobile-bar">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Ouvrir le menu des matières">
+                        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
                         </svg>
-                    </div>
-                    <div class="brand-text">
-                        <span class="brand-name">YODRIVE</span>
+                        <span>Matières</span>
+                    </button>
+                    <div class="mobile-brand">
+                        <div class="brand-mark">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 6.6C10.6 5.1 8.6 4.4 6 4.4H4v13h2c2.6 0 4.6.7 6 2.2 1.4-1.5 3.4-2.2 6-2.2h2v-13h-2c-2.6 0-4.6.7-6 2.2z" />
+                                <path d="M12 6.6v13" />
+                            </svg>
+                        </div>
+                        <div class="brand-text">
+                            <span class="brand-name">YODRIVE</span>
+                        </div>
                     </div>
                 </div>
 
@@ -1229,37 +1237,27 @@
                                 <path d="m20 20-3.6-3.6" />
                             </svg>
                         </span>
-                        <input id="search" type="search" placeholder="Rechercher un TD, une matière…" autocomplete="off"
+                        <input id="search" type="search" placeholder="Rechercher un TD, un cours, un examen…" autocomplete="off"
                             spellcheck="false">
                         <kbd>/</kbd>
                     </div>
 
-                    <div class="segmented" id="typeFilter">
-                        <button data-type="all" class="active">Tous</button>
-                        <button data-type="enonce">Énoncés</button>
-                        <button data-type="correction">Corrections</button>
                     </div>
 
-                    <div class="viewtoggle" id="viewToggle">
-                        <button data-view="grid" class="active" title="Vue grille" aria-label="Vue grille">
-                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
-                                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3.5" y="3.5" width="7" height="7" rx="1.4" />
-                                <rect x="13.5" y="3.5" width="7" height="7" rx="1.4" />
-                                <rect x="3.5" y="13.5" width="7" height="7" rx="1.4" />
-                                <rect x="13.5" y="13.5" width="7" height="7" rx="1.4" />
-                            </svg>
-                        </button>
-                        <button data-view="list" title="Vue liste" aria-label="Vue liste">
-                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
-                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 6.5h16M4 12h16M4 17.5h16" />
-                            </svg>
-                        </button>
-                    </div>
+                
+
+                <!-- NIVEAU 2 : MERVEILLEUX SHARIT MERCHAHAT (TYPE) -->
+                <div class="type-bar" id="typeBar">
+                    <button class="type-pill active" data-type="all">Tous les documents</button>
+                    <button class="type-pill" data-type="cours">Cours</button>
+                    <button class="type-pill" data-type="td">TD</button>
+                    <button class="type-pill" data-type="exams">Examens</button>
+                    <button class="type-pill" data-type="resumes">Résumés</button>
+                    <button class="type-pill" data-type="autres">Autres sources</button>
                 </div>
 
-                <div class="chips" id="chips"></div>
+                <!-- NIVEAU 3 : FILTRE DYNAMIQUE TD (TD1, TD2, TD3...) -->
+                <div class="sub-filter-bar" id="subFilterBar"></div>
             </header>
 
             <div class="content">
@@ -1334,8 +1332,10 @@
             eye: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.9"/><circle cx="12" cy="12" r=".9" fill="currentColor" stroke="none"/>',
             download: '<path d="M12 3.5v10.2"/><path d="m7.6 9.4 4.4 4.4 4.4-4.4"/><path d="M4.5 20.5h15"/>',
             check: '<path d="m5 13 4.4 4.4L19.2 6.4"/>',
+            alert: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
             doc: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/>'
         };
+
         function ic(name, size) {
             return '<svg viewBox="0 0 24 24" width="' + size + '" height="' + size + '" fill="none" stroke="currentColor" '
                 + 'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
@@ -1375,38 +1375,78 @@
                 name: 'Thermodynamique',
                 tagline: 'Énergie, entropie et transformations',
                 c1: '#d9563f', c2: '#9c2b20', pattern: 'rings', icon: 'flame'
+            },
+            'francais': {
+                name: 'Français',
+                tagline: 'Communication, expression et méthodologie',
+                c1: '#845ec2', c2: '#4b4453', pattern: 'diag', icon: 'doc'
             }
         };
 
         const RAW = [
+            // --- FRANÇAIS ---
+            ['francais', 'general', null, null, "Cahier d'Exercices - Pitch Universitaire-1 (1).pdf", "pdfs/francais/Cahier d'Exercices - Pitch Universitaire-1 (1).pdf", "Cahier d'Exercices — Pitch Universitaire"],
+            ['francais', 'general', null, null, "Corrigé – Exercices Pitch Universitaire .pdf", "pdfs/francais/Corrigé – Exercices Pitch Universitaire .pdf", "Corrigé — Exercices Pitch Universitaire"],
+            ['francais', 'general', null, null, "Enregistrement Video Pitch Universitaire-3 (1).pdf", "pdfs/francais/Enregistrement Video Pitch Universitaire-3 (1).pdf", "Enregistrement Vidéo — Pitch Universitaire"],
+            ['francais', 'general', null, null, "Fiche Bilan et Pitch – PC-Physique – S3 (4).pdf", "pdfs/francais/Fiche Bilan et Pitch – PC-Physique – S3 (4).pdf", "Fiche Bilan et Pitch — PC-Physique S3"],
+            ['francais', 'general', null, null, "Français – Axe N°1  (2).pdf", "pdfs/francais/Français – Axe N°1  (2).pdf", "Français — Axe N°1"],
+            ['francais', 'general', null, null, "Réussir son Pitch Universitaire (1).pdf", "pdfs/francais/Réussir son Pitch Universitaire (1).pdf", "Réussir son Pitch Universitaire"],
+
+            // --- TRAVAUX DIRIGÉS (TD) ---
             // Chimie organique
-            ['chimie-organique', 1, 'enonce', 'td1-enonce.pdf'],
-            ['chimie-organique', 2, 'enonce', 'td2-enonce.pdf'],
+            ['chimie-organique', 'td', 'TD1', 'enonce', 'td1-enonce.pdf', 'pdfs/chimie-organique/td1/td1-enonce.pdf', 'TD 1 — Énoncé'],
+            ['chimie-organique', 'td', 'TD1', 'solution', 'td1-correction.pdf', 'pdfs/chimie-organique/td1/td1-correction.pdf', 'TD 1 — Correction'],
+            ['chimie-organique', 'td', 'TD2', 'enonce', 'td2-enonce.pdf', 'pdfs/chimie-organique/td2/td2-enonce.pdf', 'TD 2 — Énoncé'],
+
             // Circuits électriques
-            ['circuit-electrique', 1, 'enonce', 'td1-enonce.pdf'],
-            ['circuit-electrique', 2, 'enonce', 'td2-enonce.pdf'],
+            ['circuit-electrique', 'td', 'TD1', 'enonce', 'td1-enonce.pdf', 'pdfs/circuit-electrique/td1/td1-enonce.pdf', 'TD 1 — Énoncé'],
+            ['circuit-electrique', 'td', 'TD1', 'solution', 'td1-correction-v1.pdf', 'pdfs/circuit-electrique/td1/td1-correction-v1.pdf', 'TD 1 — Correction (V1)'],
+            ['circuit-electrique', 'td', 'TD1', 'solution', 'td1-correction-v2.pdf', 'pdfs/circuit-electrique/td1/td1-correction-v2.pdf', 'TD 1 — Correction (V2)'],
+            ['circuit-electrique', 'td', 'TD2', 'enonce', 'td2-enonce.pdf', 'pdfs/circuit-electrique/td2/td2-enonce.pdf', 'TD 2 — Énoncé'],
+
             // Électromagnétisme
-            ['electromagnetique', 1, 'enonce', 'td1-enonce.pdf'],
-            ['electromagnetique', 2, 'enonce', 'td2-enonce.pdf'],
+            ['electromagnetique', 'td', 'TD1', 'enonce', 'td1-enonce.pdf', 'pdfs/electromagnetique/td1/td1-enonce.pdf', 'TD 1 — Énoncé'],
+            ['electromagnetique', 'td', 'TD2', 'enonce', 'td2-enonce.pdf', 'pdfs/electromagnetique/td2/td2-enonce.pdf', 'TD 2 — Énoncé'],
+
             // Mathématiques pour la physique
-            ['math-physique', 1, 'enonce', 'td1-enonce.pdf'],
-            ['math-physique', 2, 'enonce', 'td2-enonce.pdf'],
+            ['math-physique', 'td', 'TD1', 'enonce', 'td1-enonce.pdf', 'pdfs/math-physique/td1/td1-enonce.pdf', 'TD 1 — Énoncé'],
+            ['math-physique', 'td', 'TD1', 'solution', 'td1-correction.pdf', 'pdfs/math-physique/td1/td1-correction.pdf', 'TD 1 — Correction'],
+            ['math-physique', 'td', 'TD2', 'enonce', 'td2-enonce.pdf', 'pdfs/math-physique/td2/td2-enonce.pdf', 'TD 2 — Énoncé'],
+
             // Mécanique du solide
-            ['mecanique-solide', 1, 'enonce', 'td1-enonce.pdf'],
-            ['mecanique-solide', 1, 'correction', 'td1-correction.pdf'],
-            ['mecanique-solide', 2, 'enonce', 'td2-enonce.pdf'],
+            ['mecanique-solide', 'td', 'TD1', 'enonce', 'td1-enonce.pdf', 'pdfs/mecanique-solide/td1/td1-enonce.pdf', 'TD 1 — Énoncé'],
+            ['mecanique-solide', 'td', 'TD1', 'solution', 'td1-correction.pdf', 'pdfs/mecanique-solide/td1/td1-correction.pdf', 'TD 1 — Correction'],
+            ['mecanique-solide', 'td', 'TD2', 'enonce', 'td2-enonce.pdf', 'pdfs/mecanique-solide/td2/td2-enonce.pdf', 'TD 2 — Énoncé'],
+
             // Thermodynamique
-            ['thermodynamique', 1, 'enonce', 'td1-enonce.pdf'],
-            ['thermodynamique', 1, 'correction', 'td1-correction.pdf'],
-            ['thermodynamique', 2, 'enonce', 'td2-enonce.pdf']
+            ['thermodynamique', 'td', 'TD1', 'enonce', 'td1-enonce.pdf', 'pdfs/thermodynamique/td1/td1-enonce.pdf', 'TD 1 — Énoncé'],
+            ['thermodynamique', 'td', 'TD1', 'solution', 'td1-correction.pdf', 'pdfs/thermodynamique/td1/td1-correction.pdf', 'TD 1 — Correction'],
+            ['thermodynamique', 'td', 'TD2', 'enonce', 'td2-enonce.pdf', 'pdfs/thermodynamique/td2/td2-enonce.pdf', 'TD 2 — Énoncé'],
+
+            // --- COURS ---
+            ['electromagnetique', 'cours', null, 'cours', 'cour electromagn.pdf', 'pdfs/cours/cour electromagn.pdf', 'Cours Électromagnétisme', true],
+            ['mecanique-solide', 'cours', null, 'cours', 'cour mecanique.pdf', 'pdfs/cours/cour mecanique.pdf', 'Cours Mécanique du solide', true],
+            ['thermodynamique', 'cours', null, 'cours', 'cour tehrmo.pdf', 'pdfs/cours/cour tehrmo.pdf', 'Cours Thermodynamique', true],
+            ['math-physique', 'cours', null, 'cours', 'Cours - Mathématiques pour la Physique  .pdf', 'pdfs/cours/Cours - Mathématiques pour la Physique  .pdf', 'Cours Mathématiques pour la Physique', false],
+            ['chimie-organique', 'cours', null, 'cours', 'Cours – Chimie Organique Générale – Pr. M. MOUMOU .pdf', 'pdfs/cours/Cours – Chimie Organique Générale – Pr. M. MOUMOU .pdf', 'Cours Chimie Organique Générale — Pr. Moumou', false],
+            ['circuit-electrique', 'cours', null, 'cours', 'cours_circuits_electriques (1).pdf', 'pdfs/cours/cours_circuits_electriques (1).pdf', 'Cours Circuits Électriques', false],
+
+            // --- AUTRES SOURCES ---
+            ['mecanique-solide', 'autres', null, 'autre', '39131682-Mecanique-Du-Solide-Applications-Industrielles.pdf', 'pdfs/autre_file/39131682-Mecanique-Du-Solide-Applications-Industrielles.pdf', 'Mécanique du Solide — Applications Industrielles'],
+            ['mecanique-solide', 'autres', null, 'autre', 'MecDesSysSolIndef_cours.pdf', 'https://ensa-marrakech.uca.ma/docs/pedagogie/MecDesSysSolIndef_cours.pdf', 'Mécanique des Systèmes et Solides Indéformables (Cours)'],
+            ['mecanique-solide', 'autres', null, 'autre', 'MecDesSysSolIndef_Polycop_Ex.pdf', 'https://ensa-marrakech.uca.ma/docs/pedagogie/MecDesSysSolIndef_Polycop_Ex.pdf', 'Mécanique des Systèmes et Solides Indéformables (Exercices)'],
+
+            // --- EXAMENS ---
+            ['chimie-organique', 'exams', null, 'exam', 'Examen-Chimie-2025-2026.pdf', 'pdfs/exams/Examen-Chimie-2025-2026.pdf', 'Examen Chimie Organique (2025-2026)']
         ];
 
-        const DOCS = RAW.map(([subject, td, kind, file]) => ({
-            id: subject + '-td' + td + '-' + kind,
-            subject, td, kind, file,
-            path: 'pdfs/' + subject + '/td' + td + '/' + file
+        const DOCS = RAW.map(([matiere, type, subtype, variant, file, path, titre, unofficial], idx) => ({
+            id: matiere + '-' + type + '-' + (subtype || 'item') + '-' + idx,
+            matiere, type, subtype, variant, file, path, titre,
+            unofficial: !!unofficial
         }));
-        /* ---- Shuffle helper + randomized order for the "all" view ---- */
+
+        /* ---- Shuffle helper pour l'affichage aléatoire ---- */
         function shuffle(list) {
             const a = list.slice();
             for (let i = a.length - 1; i > 0; i--) {
@@ -1415,82 +1455,130 @@
             }
             return a;
         }
-        let ALL_ORDER = shuffle(DOCS);
 
         /* =========================================================
-           ÉTAT
+           ÉTAT V2
            ========================================================= */
-        const state = { subject: 'all', type: 'all', query: '', view: 'grid' };
+        const state = {
+            matiere: 'all',    // TABS NIVEAU 1
+            type: 'all',       // FILTRES NIVEAU 2 : 'all' | 'cours' | 'td' | 'exams' | 'resumes' | 'autres'
+            sub: 'all',        // FILTRE DYNAMIQUE NIVEAU 3 (ex: 'TD1', 'TD2' ou 'all')
+            query: ''
+        };
 
         const $ = s => document.querySelector(s);
         const navEl = $('#nav');
-        const chipsEl = $('#chips');
         const gridEl = $('#grid');
         const emptyEl = $('#empty');
         const searchEl = $('#search');
         const titleEl = $('#sectionTitle');
         const subEl = $('#sectionSub');
+        const typeBarEl = $('#typeBar');
+        const subFilterBarEl = $('#subFilterBar');
+        const sidebarEl = $('#sidebar');
+        const sidebarBackdropEl = $('#sidebarBackdrop');
+        const mobileMenuBtnEl = $('#mobileMenuBtn');
+        const sidebarCloseBtnEl = $('#sidebarCloseBtn');
+
+        function openSidebar() {
+            if (sidebarEl) sidebarEl.classList.add('open');
+            if (sidebarBackdropEl) sidebarBackdropEl.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            if (sidebarEl) sidebarEl.classList.remove('open');
+            if (sidebarBackdropEl) sidebarBackdropEl.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuBtnEl) mobileMenuBtnEl.addEventListener('click', openSidebar);
+        if (sidebarCloseBtnEl) sidebarCloseBtnEl.addEventListener('click', closeSidebar);
+        if (sidebarBackdropEl) sidebarBackdropEl.addEventListener('click', closeSidebar);
 
         /* =========================================================
            UTILITAIRES
            ========================================================= */
-        const norm = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const norm = str => str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
         function slug(str) {
             return str
                 .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')   // é→e, è→e, ç→c, etc.
-                .replace(/[^a-zA-Z0-9]+/g, '-')    // spaces & symbols → dash
-                .replace(/^-+|-+$/g, '');          // trim leading/trailing dashes
+                .replace(/[̀-ͯ]/g, '')
+                .replace(/[^a-zA-Z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
         }
 
-        function subjectList() {
+        function matiereList() {
             return [{ id: 'all', name: 'Tous les documents', icon: 'layers', color: '#8b8378', count: DOCS.length }]
                 .concat(Object.entries(SUBJECTS).map(([id, s]) => ({
                     id, name: s.name, icon: s.icon, color: s.c1,
-                    count: DOCS.filter(d => d.subject === id).length
+                    count: DOCS.filter(d => d.matiere === id).length
                 })));
         }
 
-        function countFor(id) {
-            return id === 'all' ? DOCS.length : DOCS.filter(d => d.subject === id).length;
-        }
-
         /* =========================================================
-           RENDU — NAVIGATION
+           RENDU — NAVIGATION (TABS MATIÈRES)
            ========================================================= */
         function renderNav() {
-            navEl.innerHTML = subjectList().map(it => `
-    <button class="nav-item${state.subject === it.id ? ' active' : ''}" data-subject="${it.id}">
+            navEl.innerHTML = matiereList().map(it => `
+    <button class="nav-item${state.matiere === it.id ? ' active' : ''}" data-matiere="${it.id}">
       <span class="nav-ic" style="color:${it.color};background:${it.color}1f">${ic(it.icon, 14)}</span>
       <span class="nav-name">${it.name}</span>
       <span class="nav-count">${it.count}</span>
     </button>`).join('');
         }
 
-        function renderChips() {
-            chipsEl.innerHTML = subjectList().map(it => `
-    <button class="chip${state.subject === it.id ? ' active' : ''}" data-subject="${it.id}">${it.name}</button>`
-            ).join('');
+        
+
+        /* =========================================================
+           RENDU — MERCHAHAT DYNAMIQUE (NIVEAU 3)
+           ========================================================= */
+        function renderSubFilter() {
+            if (state.type !== 'td') {
+                subFilterBarEl.style.display = 'none';
+                subFilterBarEl.innerHTML = '';
+                return;
+            }
+
+            // Récupère les subtypes TD existants pour la matière sélectionnée
+            const pool = state.matiere === 'all'
+                ? DOCS.filter(d => d.type === 'td')
+                : DOCS.filter(d => d.matiere === state.matiere && d.type === 'td');
+
+            const uniqueSubtypes = [...new Set(pool.map(d => d.subtype).filter(Boolean))].sort();
+
+            if (uniqueSubtypes.length === 0) {
+                subFilterBarEl.style.display = 'none';
+                subFilterBarEl.innerHTML = '';
+                return;
+            }
+
+            subFilterBarEl.style.display = 'flex';
+            let html = `<button class="sub-pill${state.sub === 'all' ? ' active' : ''}" data-sub="all">Tous les TD</button>`;
+            uniqueSubtypes.forEach(st => {
+                html += `<button class="sub-pill${state.sub === st ? ' active' : ''}" data-sub="${st}">${st}</button>`;
+            });
+            subFilterBarEl.innerHTML = html;
         }
 
         /* =========================================================
-           RENDU — CARTES
+           RENDU — CARTES (SANS AUCUN BADGE REDONDANT DESSUS)
            ========================================================= */
         function cardHTML(doc, i) {
-            const s = SUBJECTS[doc.subject];
-            const isCorr = doc.kind === 'correction';
-            const label = 'TD ' + doc.td + ' — ' + (isCorr ? 'Correction' : 'Énoncé');
+            const s = SUBJECTS[doc.matiere] || { name: 'Matière', c1: '#333', c2: '#111', pattern: 'grid', icon: 'doc' };
+
             return `
   <article class="card" tabindex="0" data-id="${doc.id}"
-           style="animation-delay:${Math.min(i, 14) * 32}ms"
-           aria-label="${label}, ${s.name}">
+           style="animation-delay:${Math.min(i, 14) * 28}ms"
+           aria-label="${doc.titre}, ${s.name}">
     <div class="card-visual pattern-${s.pattern}" style="--c1:${s.c1};--c2:${s.c2}">
       <span class="glyph">${ic(s.icon, 52)}</span>
     </div>
     <div class="card-body">
       <div class="card-meta">
-        <h3 class="card-title">${label}</h3>
+        <h3 class="card-title" title="${doc.titre}">${doc.titre}</h3>
         <p class="card-sub">${s.name}</p>
+        ${doc.unofficial ? `<div class="card-warning" title="Ce document n'est pas un support de cours officiel">${ic('alert', 12)} Document non officiel</div>` : ''}
       </div>
       <div class="card-actions">
         <button class="btn btn-primary" data-act="preview" title="Aperçu">
@@ -1509,41 +1597,56 @@
            ========================================================= */
         function getFiltered() {
             const q = norm(state.query.trim());
-            const base = state.subject === 'all' ? ALL_ORDER : DOCS;
-            return base.filter(d => {
-                if (state.subject !== 'all' && d.subject !== state.subject) return false;
-                if (state.type !== 'all' && d.kind !== state.type) return false;
+
+            // 1. Filtrage strict par matière, type, subtype
+            let list = DOCS.filter(d => {
+                if (state.matiere !== 'all' && d.matiere !== state.matiere) return false;
+                if (state.type !== 'all' && d.type !== state.type) return false;
+                if (state.type === 'td' && state.sub !== 'all' && d.subtype !== state.sub) return false;
+
                 if (!q) return true;
-                const s = SUBJECTS[d.subject];
+                const s = SUBJECTS[d.matiere];
                 const hay = norm([
-                    s.name, s.tagline, 'td ' + d.td, 'td' + d.td,
-                    d.kind === 'correction' ? 'correction corrige' : 'enonce',
-                    d.file, d.path
+                    s.name, s.tagline, d.titre, d.type, d.subtype || '',
+                    d.variant || '', d.file, d.path
                 ].join(' '));
                 return hay.includes(q);
             });
+
+            // 2. Si on est sur "Tous les documents" (aucun filtre de recherche textuelle), on rend l'ordre toujours aléatoire
+            if (state.matiere === 'all' && state.type === 'all' && !q) {
+                list = shuffle(list);
+            }
+
+            return list;
         }
 
         function render() {
             renderNav();
-            renderChips();
+            
+            renderSubFilter();
+
+            // Mettre à jour l'état actif des pills type
+            typeBarEl.querySelectorAll('.type-pill').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.type === state.type);
+            });
 
             const list = getFiltered();
 
             /* En-tête */
-            if (state.subject === 'all') {
+            if (state.matiere === 'all') {
                 titleEl.textContent = 'Tous les documents';
                 subEl.innerHTML = `<span>${list.length} document${list.length > 1 ? 's' : ''}</span>`
                     + `<span class="dot"></span><span>${Object.keys(SUBJECTS).length} matières</span>`;
             } else {
-                const s = SUBJECTS[state.subject];
+                const s = SUBJECTS[state.matiere];
                 titleEl.textContent = s.name;
                 subEl.innerHTML = `<span>${s.tagline}</span><span class="dot"></span>`
                     + `<span>${list.length} document${list.length > 1 ? 's' : ''}</span>`;
             }
 
             /* Grille */
-            gridEl.className = 'grid' + (state.view === 'list' ? ' list' : '');
+            gridEl.className = 'grid';
             gridEl.innerHTML = list.map(cardHTML).join('');
             emptyEl.style.display = list.length ? 'none' : 'block';
 
@@ -1553,17 +1656,16 @@
         }
 
         /* =========================================================
-           ACTIONS
+           ACTIONS & MODALE
            ========================================================= */
         function downloadDoc(doc) {
-            const s = SUBJECTS[doc.subject];
-            const kindPart = doc.kind === 'cours'
-                ? 'Cours' + doc.td
-                : doc.kind === 'correction'
-                    ? 'TD' + doc.td + '-Correction'
-                    : 'TD' + doc.td + '-Enonce';
-
-            const filename = 'YODRIVE_' + slug(s.name) + '_' + kindPart + '.pdf';
+            if (doc.path.startsWith('http://') || doc.path.startsWith('https://')) {
+                window.open(doc.path, '_blank', 'noopener,noreferrer');
+                return;
+            }
+            const s = SUBJECTS[doc.matiere];
+            const cleanTitle = slug(doc.titre);
+            const filename = 'YODRIVE_' + slug(s.name) + '_' + cleanTitle + '.pdf';
 
             const a = document.createElement('a');
             a.href = doc.path;
@@ -1584,12 +1686,11 @@
         let lastFocus = null;
 
         function openPreview(doc) {
-            const s = SUBJECTS[doc.subject];
-            const isCorr = doc.kind === 'correction';
+            const s = SUBJECTS[doc.matiere] || { name: 'Matière' };
             lastFocus = document.activeElement;
 
-            modalTitle.textContent = 'TD ' + doc.td + ' — ' + (isCorr ? 'Correction' : 'Énoncé');
-            modalSub.textContent = s.name + ' · ' + doc.file;
+            modalTitle.textContent = doc.titre;
+            modalSub.textContent = (doc.unofficial ? '⚠️ Document non officiel · ' : '') + s.name + ' · ' + doc.file;
             modalPath.textContent = doc.path;
             modalOpen.href = doc.path;
             modalDl.onclick = () => downloadDoc(doc);
@@ -1633,38 +1734,39 @@
             if (doc) openPreview(doc);
         });
 
-        function bindSubjectClicks(container) {
+        /* Gestion des clics sur les matières (Tabs Niveau 1) */
+        function bindMatiereClicks(container) {
+            if (!container) return;
             container.addEventListener('click', e => {
-                const btn = e.target.closest('[data-subject]');
+                const btn = e.target.closest('[data-matiere]');
                 if (!btn) return;
-                if (btn.dataset.subject === 'all') {
-                    ALL_ORDER = shuffle(DOCS);   // new random order every visit
-                }
-                state.subject = btn.dataset.subject;
+                state.matiere = btn.dataset.matiere;
+                state.sub = 'all'; // réinitialise le sous-filtre
+                closeSidebar(); // ferme le tiroir sur mobile
                 render();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
-        bindSubjectClicks(navEl);
-        bindSubjectClicks(chipsEl);
+        bindMatiereClicks(navEl);
 
-        /* Filtre par type */
-        $('#typeFilter').addEventListener('click', e => {
+        /* Gestion des clics sur les types (Filtre Niveau 2) */
+        typeBarEl.addEventListener('click', e => {
             const btn = e.target.closest('[data-type]');
             if (!btn) return;
             state.type = btn.dataset.type;
-            [...e.currentTarget.children].forEach(b => b.classList.toggle('active', b === btn));
+            state.sub = 'all'; // réinitialise le sous-filtre
             render();
         });
 
-        /* Bascule grille / liste */
-        $('#viewToggle').addEventListener('click', e => {
-            const btn = e.target.closest('[data-view]');
+        /* Gestion des clics sur les sous-filtres TD (Filtre Niveau 3) */
+        subFilterBarEl.addEventListener('click', e => {
+            const btn = e.target.closest('[data-sub]');
             if (!btn) return;
-            state.view = btn.dataset.view;
-            [...e.currentTarget.children].forEach(b => b.classList.toggle('active', b === btn));
+            state.sub = btn.dataset.sub;
             render();
         });
+
+
 
         /* Recherche */
         let searchTimer;
@@ -1682,7 +1784,7 @@
         });
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            if (e.key === 'Escape') { if (modal.classList.contains('open')) closeModal(); closeSidebar(); }
 
             /* Raccourci "/" pour la recherche */
             if (e.key === '/' && !modal.classList.contains('open')) {
