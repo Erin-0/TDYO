@@ -1,5 +1,5 @@
 /* YODRIVE Service Worker — offline + cache */
-const VERSION    = 'yodrive-v1';
+const VERSION    = 'yodrive-v3';
 const SHELL_CACHE = VERSION + '-shell';
 const PDF_CACHE   = VERSION + '-pdf';
 const FONT_CACHE  = VERSION + '-fonts';
@@ -33,8 +33,9 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET') return;
 
-  /* PDFs → cache-first (immutable content) */
-  if (url.pathname.startsWith('/PDFS/') || url.pathname.startsWith('/pdfs/')) {
+  /* PDFs & resources → cache-first (immutable content) */
+  const lowerPath = url.pathname.toLowerCase();
+  if (lowerPath.startsWith('/pdfs/') || lowerPath.startsWith('/cours/') || lowerPath.startsWith('/exams/') || lowerPath.startsWith('/autre_file/') || lowerPath.startsWith('/francais/')) {
     e.respondWith(
       caches.open(PDF_CACHE).then(cache =>
         cache.match(e.request).then(cached => cached || fetch(e.request).then(res => {
