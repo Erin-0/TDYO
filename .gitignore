@@ -1,0 +1,8 @@
+# Source raw folders kept locally (all web PDFs are centralized in /pdfs/)
+/cours/
+/exams/
+/francais/
+/autre_file/
+/NEW TD/
+/images/
+code.py
